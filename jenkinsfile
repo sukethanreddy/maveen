@@ -10,7 +10,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        tage('Upoad war file') {
+        stage('Upoad war file') {
             steps{
                 nexusArtifactUploader artifacts: [
                     [
