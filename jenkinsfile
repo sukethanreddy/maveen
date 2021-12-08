@@ -17,8 +17,8 @@ pipeline {
                     [
                         artifactId: 'StandAlone',
                         classifier: '',
-                        file: "target/StandAlone-${mavenPom.version}.jar",
-                        type: 'jar'
+                        file: "target/StandAlone-${mavenPom.version}.war",
+                        type: 'war'
                     ]
                 ], 
                         credentialsId: 'fd82a8b5-46a4-4bc7-8903-c88a04387071',
