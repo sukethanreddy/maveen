@@ -12,11 +12,13 @@ pipeline {
         }
         stage('Upoad war file') {
             steps{
+            script {
+            def mavenPom = readMavenPom 'pom.xml'
                 nexusArtifactUploader artifacts: [
                     [
                         artifactId: 'StandAlone',
                          classifier: '',
-                          file: 'target/StandAlone-2.3.jar',
+                          file: "target/StandAlone-${mavenPom.version}.jar",
                            type: 'jar'
                            ]
                            ], 
@@ -26,7 +28,8 @@ pipeline {
                            nexusVersion: 'nexus3',
                            protocol: 'http',
                            repository: 'Maven_Release',
-                           version: '2.3'
+                           version: "${mavenPom.version}"
+            }
             }
         }
     }
