@@ -26,7 +26,7 @@ pipeline {
                         nexusUrl: '172.31.93.166',
                         nexusVersion: 'nexus2',
                         protocol: 'http',
-                        repository: 'http://18.206.249.186:8081/repository/Maven_Release/',
+                        repository: 'http://18.206.249.186:8081/repository/Maven_Release',
                         version: "${mavenPom.version}"
                 }
             }
