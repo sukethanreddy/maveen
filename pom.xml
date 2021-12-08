@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ravi.p1</groupId>
   <artifactId>StandAlone</artifactId>
-  <version>2.3-SNAPSHOT</version>
+  <version>2.3</version>
   <packaging>jar</packaging>
 
   <name>StandAlone</name>
