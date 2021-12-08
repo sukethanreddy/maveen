@@ -6,30 +6,29 @@ pipeline {
     stages {
         stage('build') {
             steps{
-
                 sh 'mvn clean package'
             }
         }
         stage('Upoad war file') {
             steps{
-            script {
-            def mavenPom = readMavenPom file:'pom.xml'
-                nexusArtifactUploader artifacts: [
+                script{
+                    def mavenPom = readMavenPom file: 'pom.xml'
+                    nexusArtifactUploader artifacts: [
                     [
                         artifactId: 'StandAlone',
-                         classifier: '',
-                          file: "target/StandAlone-${mavenPom.version}.jar",
-                           type: 'jar'
-                           ]
-                           ], 
-                           credentialsId: 'fd82a8b5-46a4-4bc7-8903-c88a04387071',
-                           groupId: 'com.ravi.p1', 
-                           nexusUrl: '172.31.93.166:8081',
-                           nexusVersion: 'nexus3',
-                           protocol: 'http',
-                           repository: 'Maven_Release',
-                           version: "${mavenPom.version}"
-            }
+                        classifier: '',
+                        file: "target/StandAlone-${mavenPom.version}.jar",
+                        type: 'jar'
+                    ]
+                ], 
+                        credentialsId: 'fd82a8b5-46a4-4bc7-8903-c88a04387071',
+                        groupId: 'com.ravi.p1', 
+                        nexusUrl: '172.31.93.166',
+                        nexusVersion: 'nexus2',
+                        protocol: 'http',
+                        repository: 'http://18.206.249.186:8081/repository/Maven_Release/',
+                        version: "${mavenPom.version}"
+                }
             }
         }
     }
