@@ -4,7 +4,7 @@
   <groupId>com.ravi.p1</groupId>
   <artifactId>StandAlone</artifactId>
   <version>2.3</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>StandAlone</name>
   <url>http://maven.apache.org</url>
