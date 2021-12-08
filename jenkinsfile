@@ -23,7 +23,7 @@ pipeline {
                 ], 
                         credentialsId: 'fd82a8b5-46a4-4bc7-8903-c88a04387071',
                         groupId: 'com.ravi.p1', 
-                        nexusUrl: '172.31.93.166',
+                        nexusUrl: '172.31.93.166:8081',
                         nexusVersion: 'nexus2',
                         protocol: 'http',
                         repository: 'Maven_Release',
