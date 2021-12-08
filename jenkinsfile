@@ -12,7 +12,9 @@ pipeline {
         stage('Upoad war file') {
             steps{
                 script{
+
                     def mavenPom = readMavenPom file: 'pom.xml'
+                    def nexusRepoName = mavenPom.version.endswith("SNAPSHOT") ? "maveen----snapshottt" : "Maven_Release"
                     nexusArtifactUploader artifacts: [
                     [
                         artifactId: 'StandAlone',
@@ -26,7 +28,7 @@ pipeline {
                         nexusUrl: '172.31.93.166:8081',
                         nexusVersion: 'nexus2',
                         protocol: 'http',
-                        repository: 'Maven_Release',
+                        repository: nexusRepoName,
                         version: "${mavenPom.version}"
                 }
             }
