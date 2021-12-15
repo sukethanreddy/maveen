@@ -27,6 +27,7 @@ pipeline {
                     gv.build()
                 }
             }
+	    }
             stage('sonar') {
             steps{
                 withSonarQubeEnv(credentialsId: 'Sonar111') {
@@ -40,5 +41,5 @@ pipeline {
 
         }
         
-    }
+    
 }
