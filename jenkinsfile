@@ -30,7 +30,7 @@ pipeline {
 
         }
 
-        stage('build') {
+        stage('sonar') {
             steps{
                 withSonarQubeEnv(credentialsId: 'Sonar111') {
 
