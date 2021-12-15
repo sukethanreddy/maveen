@@ -1,4 +1,7 @@
 
+import jenkins.model.*
+jenkins = Jenkins.instance
+
 def gv
 
 pipeline {
@@ -23,6 +26,16 @@ pipeline {
             steps{
                 script {
                     gv.build()
+                }
+            }
+
+        }
+
+
+        stage('sonar') {
+            steps{
+                script {
+                    gv.sonar()
                 }
             }
 
