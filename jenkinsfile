@@ -52,7 +52,7 @@ pipeline {
                     // Optionally use a Maven environment you've configured already
                     
                        
-                       sh ' mvn -e -B sonar:sonar -Dsonar.java.source=1.8 -Dsonar.host.url="${http://34.201.173.54:9000/}" -Dsonar.login="${admin}" -Dsonar.password="${admin}" -Dsonar.sourceEncoding=UTF-8 '
+                       sh 'mvn sonar:sonar -Dsonar.host.url=http://3.91.232.116:9000 -Dsonar.login=13452f0700fb5aed47696638ee052d926d73b36e '
                     
                 }
             }
