@@ -30,18 +30,30 @@ pipeline {
 
         }
 
-        stage('sonar') {
-            steps{
-                withSonarQubeEnv(credentialsId: 'Sonar111') {
+//         stage('sonar') {
+//             steps{
+//                 withSonarQubeEnv(credentialsId: 'Sonar111') {
 
-sh '''
-           mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=false
-           mvn -e -B sonar:sonar -Dsonar.java.source=1.8 -Dsonar.host.url="${http://34.201.173.54:9000/}" -Dsonar.login="${admin}" -Dsonar.password="${admin}" -Dsonar.sourceEncoding=UTF-8
-           '''
-		   }
-        }
+// sh '''
+//            mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=false
+//            mvn -e -B sonar:sonar -Dsonar.java.source=1.8 -Dsonar.host.url="${http://34.201.173.54:9000/}" -Dsonar.login="${admin}" -Dsonar.password="${admin}" -Dsonar.sourceEncoding=UTF-8
+//            '''
+// 		   }
+//         }
             
 
+//         }
+
+
+        stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv(credentialsId: 'Sonar111') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'Maven 3.5') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
         }
         
     }
