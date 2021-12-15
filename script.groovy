@@ -1,5 +1,5 @@
 def build() {
-    sh 'mvn clean package sonar:sonar'
+    sh 'mvn clean package '
 }
 
 return this
