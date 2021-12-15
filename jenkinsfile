@@ -1,13 +1,25 @@
 
+def gv
+
 pipeline {
     agent any
     tools {
   maven 'maven3'
     }
     stages {
+        stage('init') {
+            steps{
+                script {
+                    gv = load "script.groovy"
+                }
+            }
+
+        }
         stage('build') {
             steps{
-                sh 'mvn clean package'
+                script {
+                    gv.build()
+                }
             }
 
         }
