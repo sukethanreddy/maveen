@@ -49,6 +49,7 @@ pipeline {
             steps {
                 sh 'mvn clean package sonar:sonar'
             }
+            }
         
     }
 }
