@@ -1,4 +1,6 @@
 
+
+
 def gv
 
 pipeline {
@@ -24,6 +26,16 @@ pipeline {
                 script {
                     gv.build()
                 }
+            }
+            stage('sonar') {
+            steps{
+                withSonarQubeEnv(credentialsId: 'Sonar111') {
+
+                sh '''
+           mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=false
+           mvn -e -B sonar:sonar -Dsonar.java.source=1.8 -Dsonar.host.url="${http://34.201.173.54:9000/}" -Dsonar.login="${admin}" -Dsonar.password="${admin}" -Dsonar.sourceEncoding=UTF-8
+           '''
+		   }
             }
 
         }
