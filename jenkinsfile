@@ -1,5 +1,5 @@
 def gv
-def qualitygate = waitForQualityGate()
+
 
 pipeline {
     agent any
