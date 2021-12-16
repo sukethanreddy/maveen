@@ -50,10 +50,10 @@ pipeline {
                 ], 
                 credentialsId: 'nexus3',
                 groupId: 'com.ravi.p1',
-                nexusUrl: '172.31.90.88', 
+                nexusUrl: '172.31.90.88:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
-                repository: 'http://3.94.9.227:8081/repository/simpleapp-release/', 
+                repository: 'simpleapp-release', 
                 version: '1.0.0'
             }
 
