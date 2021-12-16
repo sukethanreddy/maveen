@@ -39,15 +39,24 @@ pipeline {
             }
         }
         
-        //stage("Quality Gate") {
-          //  steps {
-            //    timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-              //      waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-token'
-                //}
-            //}
-        //}
-              
+        stage('upload war file to nexus') {
+            steps{
+                nexusArtifactUploader artifacts: [
+                    [artifactId: 'StandAlone', 
+                    classifier: '', 
+                    file: 'target/StandAlone-1.0.0.jar',
+                     type: 'jar'
+                     ]
+                ], 
+                credentialsId: 'nexus3',
+                groupId: 'com.ravi.p1',
+                nexusUrl: '172.31.90.88', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'http://3.94.9.227:8081/repository/simpleapp-release/', 
+                version: '1.0.0'
+            }
+
+        }
     }
 }
