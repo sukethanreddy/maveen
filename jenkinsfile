@@ -41,20 +41,10 @@ pipeline {
         
         stage('upload war file to nexus') {
             steps{
-                nexusArtifactUploader artifacts: [
-                    [artifactId: 'StandAlone', 
-                    classifier: '', 
-                    file: 'target/StandAlone-1.0.0.jar',
-                     type: 'jar'
-                     ]
-                ], 
-                credentialsId: 'nexus3',
-                groupId: 'com.ravi.p1',
-                nexusUrl: '172.31.90.88:8081', 
-                nexusVersion: 'nexus3', 
-                protocol: 'http', 
-                repository: 'simpleapp-release', 
-                version: '1.0.0'
+            script {
+                    gv.uploadwarfiletonexus()
+                }
+                
             }
 
         }
