@@ -10,7 +10,7 @@ def uploadwarfiletonexus()
     nexusArtifactUploader artifacts: [
                     [artifactId: 'StandAlone', 
                     classifier: '', 
-                    file: 'target/StandAlone-1.0.0.jar',
+                    file: 'target/StandAlone-3.0.0.jar',
                      type: 'jar'
                      ]
                 ], 
