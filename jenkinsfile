@@ -1,50 +1,34 @@
-def gv
 
 
 pipeline {
     agent any
-    parameters {
-        choice(name: 'VERSION',choices: ['1.1.0','1.2.0','1.3.0'],description:'')
-        booleanParam(name:'executeTest',defaultValue: true,description: '')
-    }
     tools {
   maven 'maven3'
     }
     stages {
-        stage('init') {
-            steps{
-                script {
-                    gv = load "script.groovy"
-                }
-            }
-
-        }
         stage('build') {
             steps{
-                script {
-                    gv.build()
-                }
+                sh 'mvn clean package'
             }
-            
 
         }
 
-
-
-        stage('SonarQube analysis 1') {
-            steps {
-                script {
-                    gv.sonar()
-                }
-            }
-        }
-        
         stage('upload war file to nexus') {
             steps{
-            script {
-                    gv.uploadwarfiletonexus()
-                }
-                
+                nexusArtifactUploader artifacts: [
+                    [artifactId: 'StandAlone', 
+                    classifier: '', 
+                    file: 'target/StandAlone-1.0.0.jar',
+                     type: 'jar'
+                     ]
+                ], 
+                credentialsId: 'nexus3',
+                groupId: 'com.ravi.p1',
+                nexusUrl: '172.31.90.88:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'simpleapp-release', 
+                version: '1.0.0'
             }
 
         }
