@@ -47,18 +47,18 @@ pipeline {
                 //}
             //}
         //}
-        stage("Quality Gate") {
+        stage ("SonarQube analysis") {
+   steps {
+      withSonarQubeEnv('SonarQube') {
+         sh "../../../sonar-scanner-2.9.0.670/bin/sonar-scanner"   
+      }
 
-         steps {
-              sleep(30)
-              script {
-               def qualitygate = waitForQualityGate()
-               if (qualitygate.status != "OK") {
-               error "Pipeline aborted due to quality gate failure: ${qualitygate.status}"
-               }
-              }
-            }
-          }
+      def qualitygate = waitForQualityGate()
+      if (qualitygate.status != "OK") {
+         error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
+      }
+   }
+}
         
     }
 }
