@@ -34,12 +34,9 @@ pipeline {
         }
 
         stage('upload war file to nexus') {
-        def mavenPom = readMavenPom file:'pom.xml'
             steps {
-            
-                script {
-                
-                    gv.uploadwarfiletonexus()
+              script {
+                  gv.uploadwarfiletonexus()
                 }
             }
         }
