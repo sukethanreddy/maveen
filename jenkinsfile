@@ -1,5 +1,5 @@
 def gv
-def mavenPom = readMavenPom file:'pom.xml'
+
 pipeline {
     agent any
     
@@ -35,6 +35,7 @@ pipeline {
 
         stage('upload war file to nexus') {
             steps {
+            def mavenPom = readMavenPom file:'pom.xml'
                 script {
                 
                     gv.uploadwarfiletonexus()
