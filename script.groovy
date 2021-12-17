@@ -7,10 +7,10 @@ def sonar() {
 
 def uploadwarfiletonexus()
 {
-                nexusArtifactUploader artifacts: [
+    nexusArtifactUploader artifacts: [
                     [artifactId: 'StandAlone', 
                     classifier: '', 
-                    file: "target/StandAlone-${mavenPom.versiom}.jar",
+                    file: 'target/StandAlone-5.0.0.jar',
                      type: 'jar'
                      ]
                 ], 
@@ -20,8 +20,7 @@ def uploadwarfiletonexus()
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
                 repository: 'simpleapp-release', 
-                version: "${mavenPom.versiom}"
-
+                version: '5.0.0'
 }
 
 return this
