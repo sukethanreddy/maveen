@@ -7,6 +7,8 @@ def sonar() {
 
 def uploadwarfiletonexus()
 {
+    script {
+        
     def mavenPom = readMavenPom file:'pom.xml'
                 nexusArtifactUploader artifacts: [
                     [artifactId: 'StandAlone', 
@@ -22,6 +24,7 @@ def uploadwarfiletonexus()
                 protocol: 'http', 
                 repository: 'simpleapp-release', 
                 version: "${mavenPom.versiom}"
+    }
 }
 
 return this
